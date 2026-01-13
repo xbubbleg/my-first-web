@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>เว็บของสมชาย</title>
+        <style>
+            h1{
+                color: red;
+            }           
+            .matcha {
+                color: green;
+            }   
+            body {
+                background-color: #f0f8ff; /* สีพื้นหลัง */
+                font-family: 'San-serif'; /*g เปลี่ยนฟอนต์ */
+            }
+            img {
+                width: 200px; /* กำหนดความกว้างรูปภาพ */
+                border-radius: 50%; /* ทำให้รูปภาพเป็นวงกลม */
+            }
+            .card {
+                background-color: white; /* สีพื้นหลังของการ์ด */
+                width: 300px; /* กำหนดความกว้างของการ์ด */
+                margin: auto; /* จัดกึ่งกลางการ์ด */
+                padding: 20px; /* ระยะห่างภายในการ์ด */
+                border-radius: 15px; /* มุมโค้งของการ์ด */
+                text-align: center; /* จัดกึ่งกลางข้อความ */
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* เงาของการ์ด */
+            }
+            ul {
+                list-style-type: none; /* เอาเครื่องหมายหน้ารายการออก */
+                padding: 0; /* เอาระยะห่างภายในออก */
+            }
+            button {
+                background-color: #4CAF50; /* สีพื้นหลังปุ่ม */
+                color: white; /* สีตัวอักษรปุ่ม */
+                padding: 10px 20px; /* ระยะห่างภายในปุ่ม */
+                border: none; /* เอาเส้นขอบปุ่มออก */
+                border-radius: 5px; /* มุมโค้งของปุ่ม */
+                cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อชี้ที่ปุ่ม */
+                font-size: 16px; /* ขนาดตัวอักษรปุ่ม */
+                margin-top: 10px; /*เว้นระยะห่างจากเมนูด้านบน */
+            }
+            button:hover {
+                background-color: #45a049; /* เปลี่ยนเป็นสีเขียวที่เข้มขึ้นนิดนึง */
+                transform: scale(1.05); /* ขยายขนาดปุ่มขึ้น 5% ให้เด้งสู้มือ */
+                transition: 0.3s; /* ใส่ Effect ให้การเปลี่ยนสีดูนุ่มนวลขึ้น 0.3 วินาที */
+            }
+            .delete-btn {
+                background-color: #ff4d4d;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 5px 10px;
+                margin-left: 10px;
+                cursor: pointer;
+                font-size: 12px;
+            }
+
+            .delete-btn:hover {
+                background-color: #cc0000;     
+            }
+        </style>
+    </head>
+<body>
+    <div class="card">  
+        <h1>สมชาย</h1>
+        <p>สวัสดีครับ ผมกำลังฝึกเขียนเว็บไซต์</p>
+        <img src="profile.jpg" alt="รูปโปรไฟล์ของสมชาย">
+        <br> <a href="https://www.google.co.th">ไปที่ Google </a>
+        <br><input type="text" id="new-menu" placeholder="พิมพ์ชื่อเมนู..." style="width: 150px;">
+        <br><input type="number" id="new-price" placeholder="ราคา" style="width: 80px;">
+        <button onclick="addMenu()">เพิ่มเมนู</button>
+        <hr>
+        <ul id="menu-list"></ul>
+            <script>
+                let drinks = [
+                    {name: "มัทฉะ", price: 60 },
+                    {name: "ชาเขียว", price: 50 },
+                    {name: "ชาไทย", price: 40 },
+                    {name: "โกโก้", price: 45 },
+                    {name: "กาแฟดำ", price: 55 }
+                ];
+                let menuList = document.getElementById("menu-list");
+                for (let item of drinks) {
+                    menuList.innerHTML += "<li>" + item.name + " - " + item.price + " บาท" + "<button class='delete-btn' onclick='this.parentElement.remove()'>ลบ</button>" + "</li>";
+                }
+                function addMenu() {
+                    let inputName = document.getElementById("new-menu");
+                    let inputPrice = document.getElementById("new-price");
+                    let menuList = document.getElementById("menu-list");
+                    let name = inputName.value;
+                    let price = inputPrice.value;                   
+                    if (name == "" || price == "") {
+                        alert("กรุณาพิมพ์ชื่อเมนูและราคาก่อน!!");
+                        return;
+                    }
+                    menuList.innerHTML += "<li>" + name + " - " + price + " บาท" + "<button class='delete-btn' onclick='this.parentElement.remove()'>ลบ</button>" + "</li>";
+                    inputName.value = "";
+                    inputPrice.value = "";
+                }
+            </script>
+    </div>
+</body>
+</html>
